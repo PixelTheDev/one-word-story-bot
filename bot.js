@@ -18,7 +18,8 @@ let channel = null;
 // The ready event is vital, it means that your bot will only start reacting to information
 // from Discord _after_ ready is emitted
 client.on('ready', () => {
-    client.user.setActivity("Reading beautiful words | ./start to start!"); // set game upon login
+    //client.user.setActivity("Reading beautiful words | ./start to start!"); // set game upon login
+    client.user.setActivity("Upgrading code!");
     console.log('ready to hear your story!');
 });
 
