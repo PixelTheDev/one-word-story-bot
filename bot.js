@@ -29,11 +29,6 @@ client.on('message', message => {
     // It's good practice to ignore other bots. This also makes your bot ignore itself
     // and not get into a spam loop (we call that "botception").
     if(message.author.bot) return;
-splittedmessage = message.content.split(" ");
-    numberofwords = splittedmessage.lenght;
-    if(numberofwords > 1){
-       message.channel.send("One word per message!");
-    }
 
     // Otherwise ignore any message that does not start with the prefix, 
     // which is set above
@@ -81,6 +76,11 @@ splittedmessage = message.content.split(" ");
 		
 		return message.channel.send(returnStr);
 	}
+splittedmessage = message.content.split(" ");
+    numberofwords = splittedmessage.lenght;
+    if(numberofwords > 1){
+       message.channel.send("One word per message!");
+    }   
 });
 
 // log the bot in
