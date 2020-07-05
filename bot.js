@@ -5,7 +5,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 // The token of your bot - https://discordapp.com/developers/applications/me
-const token = '';
+const token = 'NzI4NzA5MjYzOTYyMjc1ODQw.XwD2cA.Db-2bbsQ3QPl8h0tQUztS4In7Ok';
 
 // create bot prefix
 const prefix = './';
@@ -18,7 +18,7 @@ let channel = null;
 // The ready event is vital, it means that your bot will only start reacting to information
 // from Discord _after_ ready is emitted
 client.on('ready', () => {
-    client.user.setActivity("Type `./start` to start!"); // set game upon login
+    client.user.setActivity("Reading beautiful words | ./start to start!"); // set game upon login
     console.log('ready to hear your story!');
 });
 
@@ -51,8 +51,8 @@ client.on('message', message => {
 	{
 		if(listening === true && channel === message.channel)
 			return message.channel.send("Already listening on this channel! I'll make sure this word isn't logged. :wink:");
-	/*	else if (listening === true && channel != message.channel)
-			return message.channel.send("Already listening on another channel!");*/
+		else if (listening === true && channel != message.channel)
+			return message.channel.send("Already listening on another channel!");
 		
 		listening = true;
 		channel = message.channel;
@@ -77,4 +77,4 @@ client.on('message', message => {
 });
 
 // log the bot in
-client.login(process.env.TOKEN);
+client.login(token);
