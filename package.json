@@ -1,5 +1,13 @@
 {
+  "name": "One Word Story",
+  "description": "",
+  "version": "0.0.1",
+  "main": "bot.js",
   "scripts": {
-    "work": "node server.js"
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "discord.js": "11.1.0",
+    "request": "2.81.0"
   }
 }
