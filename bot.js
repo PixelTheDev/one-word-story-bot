@@ -44,6 +44,12 @@ client.on('message', message => {
 		}
 		else return;
 	}
+    splittedmessage = message.content.split(" ");
+    numberofwords = splittedmessage.lenght;
+    if(numberofwords > 1){
+       message.channel.send("One word per message!");
+    }
+
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
@@ -60,7 +66,6 @@ client.on('message', message => {
 		returnStr = "";
 		return message.channel.send("Now listening! Type command `./end` to stop listening.\nRemember to end your sentences, close your quotes, and have fun!");
 	}
-
 	if (command === "end")
 	{
 		/*if(channel != message.channel)
