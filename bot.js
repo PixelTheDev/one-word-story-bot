@@ -19,7 +19,7 @@ let channel = null;
 // from Discord _after_ ready is emitted
 client.on('ready', () => {
     //client.user.setActivity("Reading beautiful words | ./start to start!"); // set game upon login
-    client.user.setActivity("Upgrading code! :^)");
+    client.user.setActivity("Upgrading code! :P");
     console.log('ready to hear your story!');
 });
 
