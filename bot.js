@@ -51,19 +51,19 @@ client.on('message', message => {
 	{
 		if(listening === true && channel === message.channel)
 			return message.channel.send("Already listening on this channel! I'll make sure this word isn't logged. :wink:");
-		else if (listening === true && channel != message.channel)
-			return message.channel.send("Already listening on another channel!");
+		/*else if (listening === true && channel != message.channel)
+			return message.channel.send("Already listening on another channel!");*/
 		
 		listening = true;
 		channel = message.channel;
 		returnStr = "";
-		return message.channel.send("Now listening! Type command `./end` to stop listening.\nRemember to end your sentences, close your quotes, write only one word at a time, and have fun!");
+		return message.channel.send("Now listening! Type command `./end` to stop listening.\nRemember to end your sentences, close your quotes, and have fun!");
 	}
 
 	if (command === "end")
 	{
-		if(channel != message.channel)
-			return message.channel.send("`./end` must be run from the same channel that `./start` was called from.");
+		/*if(channel != message.channel)
+			return message.channel.send("`./end` must be run from the same channel that `./start` was called from.");*/
 		
 		if (returnStr == "")
 			return message.channel.send("You didn't write anything... But I'll keep listening!");
