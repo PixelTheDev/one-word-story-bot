@@ -5,7 +5,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 // The token of your bot - https://discordapp.com/developers/applications/me
-const token = 'NzI4NzA5MjYzOTYyMjc1ODQw.XwD2cA.Db-2bbsQ3QPl8h0tQUztS4In7Ok';
+const token = '';
 
 // create bot prefix
 const prefix = './';
@@ -77,4 +77,4 @@ client.on('message', message => {
 });
 
 // log the bot in
-client.login(token);
+client.login(procces.env.TOKEN);
