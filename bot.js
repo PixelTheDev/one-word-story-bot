@@ -30,12 +30,6 @@ client.on('message', message => {
     // and not get into a spam loop (we call that "botception").
     if(message.author.bot) return;
 
-    splittedmessage = message.content.split(" ");
-    numberofwords = splittedmessage.lenght;
-    if(numberofwords > 1){
-      return message.channel.send("One word per message!");
-    }
-
     // Otherwise ignore any message that does not start with the prefix, 
     // which is set above
     if(message.content.indexOf(prefix) !== 0)
@@ -82,6 +76,11 @@ client.on('message', message => {
 		
 		return message.channel.send(returnStr);
 	}
+    splittedmessage = message.content.split(" ");
+    numberofwords = splittedmessage.lenght;
+    if(numberofwords > 1){
+      return message.channel.send("One word per message!");
+    }
 
 });
 
