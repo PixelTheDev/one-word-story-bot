@@ -45,7 +45,7 @@ client.on('message', message => {
 		  var a = message.content;
 		  var b = a.split(" ");
 		  b[0], b[1]
-		  if (b[1].length >= 1 && listening == true) {
+		  if (b[1] && listening == true) {
 		    return message.channel.send("Only one word per message!");
 		  }else if ((message.content.indexOf(".") == 0 || message.content.indexOf(",") ==  0 || message.content.indexOf("\"") == 0 || message.content.indexOf("?") == 0 || message.content.indexOf("!") == 0 || message.content.indexOf("™") == 0 || message.content.indexOf("“") == 0 || message.content.indexOf("”") == 0 || message.content.indexOf(";") == 0 || message.content.indexOf(":") == 0 || message.content.indexOf("(") == 0 || message.content.indexOf(")") == 0 || message.content.indexOf("[") == 0 || message.content.indexOf("]") == 0 || message.content.indexOf("~") == 0 || message.content.indexOf("-") == 0 || message.content.indexOf("/") == 0) && returnStr != "")
 				returnStr = returnStr.slice(0, (returnStr.length - 1));
