@@ -17,7 +17,8 @@ let channel = null;
 // The ready event is vital, it means that your bot will only start reacting to information
 // from Discord _after_ ready is emitted
 client.on('ready', () => {
-    client.user.setActivity("Reading beautiful words | ./start to start!"); // set game upon login
+    //client.user.setActivity("Reading beautiful words | ./start to start!"); // set game upon login
+    client.user.setActivity("Upgrading code! :wink:");
     console.log('ready to hear your story!');
 });
 
@@ -42,6 +43,9 @@ client.on('message', message => {
 		}
 		else return;
 	}
+if(message.content.indexOf(" ") == 1){
+  return message.channel.send("Only one word per message!");
+}
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
