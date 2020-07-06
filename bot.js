@@ -18,7 +18,7 @@ let channel = null;
 // from Discord _after_ ready is emitted
 client.on('ready', () => {
     //client.user.setActivity("Reading beautiful words | ./start to start!"); // set game upon login
-    client.user.setActivity("Reading beautiful words | ./start to start!");
+    client.user.setActivity("Upgrading code");
     console.log('ready to hear your story!');
 });
 
@@ -56,7 +56,7 @@ client.on('message', message => {
 			returnStr += message.content + " ";
 		}
 		else return;
-		author = message.author;
+		var author = message.author;
 	}
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
