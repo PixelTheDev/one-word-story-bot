@@ -44,9 +44,9 @@ client.on('message', message => {
 		}
 		else return;
 	}
-if(message.content.indexOf(" ")){
+/*if(message.content.indexOf(" ")){
    return message.channel.send("Only 1 word per message");
-}
+}*/
     
 
 
