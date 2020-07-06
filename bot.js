@@ -19,7 +19,7 @@ let channel = null;
 // from Discord _after_ ready is emitted
 client.on('ready', () => {
     //client.user.setActivity("Reading beautiful words | ./start to start!"); // set game upon login
-    client.user.setActivity("Upgrading code! :P");
+    client.user.setActivity("Upgrading code! :wink:");
     console.log('ready to hear your story!');
 });
 
@@ -37,13 +37,16 @@ client.on('message', message => {
 		// if listening is true, add new words to your story
 		if(listening === true && channel === message.channel)
 		{
-			if ((message.content.indexOf(".") == 0 || message.content.indexOf(",") ==  0 || message.content.indexOf("\"") == 0 || message.content.indexOf("?") == 0 || message.content.indexOf("!") == 0 || message.content.indexOf("™") == 0 || message.content.indexOf("“") == 0 || message.content.indexOf("”") == 0 || message.content.indexOf(";") == 0 || message.content.indexOf(":") == 0 || message.content.indexOf("(") == 0 || message.content.indexOf(")") == 0 || message.content.indexOf("[") == 0 || message.content.indexOf("]") == 0 || message.content.indexOf("~") == 0 || message.content.indexOf("-") == 0 || message.content.indexOf("/") == 0) && returnStr != "")
+			if ((message.content.indexOf(".") == 0 || message.content.indexOf(",") ==  0 || message.content.indexOf("\") == 0 || message.content.indexOf("?") == 0 || message.content.indexOf("!") == 0 || message.content.indexOf("™") == 0 || message.content.indexOf("“") == 0 || message.content.indexOf("”") == 0 || message.content.indexOf(";") == 0 || message.content.indexOf(":") == 0 || message.content.indexOf("(") == 0 || message.content.indexOf(")") == 0 || message.content.indexOf("[") == 0 || message.content.indexOf("]") == 0 || message.content.indexOf("~") == 0 || message.content.indexOf("-") == 0 || message.content.indexOf("/") == 0) && returnStr != "")
 				returnStr = returnStr.slice(0, (returnStr.length - 1));
 			
 			returnStr += message.content + " ";
 		}
 		else return;
 	}
+if(message.content.contents(" ")){
+   return message.channel.send("Only 1 word per message!");
+}
     
 
 
