@@ -26,7 +26,7 @@ while(i == 0) {
 client.on("messageDelete", (message) => {
     return message.channel.send(`**${message.author.username}** deleted this word: ${message}`);
 });
-if(command === "end") {
+if(i === 1) {
  break;
 }
 }
@@ -74,6 +74,7 @@ client.on('message', message => {
 
 	if (command === "end")
 	{
+                i = 1;
 		if(channel != message.channel)
 			return message.channel.send("`./end` must be run from the same channel that `./start` was called from.");
 		
