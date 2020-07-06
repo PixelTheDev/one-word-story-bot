@@ -18,13 +18,13 @@ let channel = null;
 // from Discord _after_ ready is emitted
 client.on('ready', () => {
     //client.user.setActivity("Reading beautiful words | ./start to start!"); // set game upon login
-    client.user.setActivity("Lots Of Bugs!");
+    client.user.setActivity("Reading beautiful words | ./start to start!");
     console.log('ready to hear your story!');
 });
 
 client.on("messageDelete", (message) => {
   if(listening == true && channel == message.channel){
-    return message.channel.send(`**${message.author.username}** deleted this word: ${message} when writing the story`);
+    return message.channel.send(`**${message.author.username}** deleted this word:`, `${message}`, `when writing the story`);
   }
 });
 
@@ -82,7 +82,7 @@ client.on('message', message => {
 		listening = false;
 		channel = null;
 		
-		return message.channel.send("Here is your beautiful story!\n" + returnStr);
+		return message.channel.send("Here is your beautiful story!\n\n" + returnStr);
 		//return message.channel.send(returnStr);
 	}
 });
