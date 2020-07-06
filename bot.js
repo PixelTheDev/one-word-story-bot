@@ -7,7 +7,7 @@ const client = new Discord.Client();
 // The token of your bot - https://discordapp.com/developers/applications/me
 
 // create bot prefix
-const prefix = '#';
+const prefix = ';';
 
 // create other variables
 let listening = false;
@@ -24,7 +24,7 @@ client.on('ready', () => {
 
 client.on("messageDelete", (message) => {
   if(listening == true && channel == message.channel){
-    return message.channel.send(`**${message.author.username}** deleted this word:`, `${message}`, `when writing the story`);
+    return message.channel.send(`**${message.author.username}** deleted this word: __${message}__ when writing the story`);
   }
 });
 
@@ -56,8 +56,8 @@ client.on('message', message => {
 			returnStr += message.content + " ";
 		}
 		else return;
-		var author = message.author;
 	}
+	var author = message.author;
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
