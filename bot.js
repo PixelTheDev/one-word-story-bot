@@ -18,12 +18,14 @@ let channel = null;
 // from Discord _after_ ready is emitted
 client.on('ready', () => {
     //client.user.setActivity("Reading beautiful words | ./start to start!"); // set game upon login
-    client.user.setActivity("Upgrading code!");
+    client.user.setActivity("Improving code!");
     console.log('ready to hear your story!');
 });
 
 client.on("messageDelete", (message) => {
-    return message.channel.send(`**${message.author.username}** deleted this word: ${message}`);
+  if(listening == true && channel == message.channel){
+    return message.channel.send(`**${message.author.username}** deleted this word: ${message} when writing the story`);
+  }
 });
 
 // create an event listener for messages
@@ -58,8 +60,8 @@ client.on('message', message => {
 	{
 		if(listening === true && channel === message.channel)
 			return message.channel.send("Already listening on this channel! I'll make sure this word isn't logged. :wink:");
-		else if (listening === true && channel != message.channel)
-			return message.channel.send("Already listening on another channel!");
+		/*else if (listening === true && channel != message.channel)
+			return message.channel.send("Already listening on another channel!");*/
 		
 		listening = true;
 		channel = message.channel;
@@ -69,8 +71,8 @@ client.on('message', message => {
 
 	if (command === "end")
 	{
-		if(channel != message.channel)
-			return message.channel.send("`./end` must be run from the same channel that `./start` was called from.");
+		/*if(channel != message.channel)
+			return message.channel.send("`./end` must be run from the same channel that `./start` was called from.");*/
 		
 		if (returnStr == "")
 			return message.channel.send("You didn't write anything... But I'll keep listening!");
@@ -78,7 +80,7 @@ client.on('message', message => {
 		listening = false;
 		channel = null;
 		
-		
+		return message.channel.send("Here is your beautiful story!")
 		return message.channel.send(returnStr);
 	}
 });
