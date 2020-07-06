@@ -18,14 +18,17 @@ let channel = null;
 // from Discord _after_ ready is emitted
 client.on('ready', () => {
     //client.user.setActivity("Reading beautiful words | ./start to start!"); // set game upon login
-    client.user.setActivity("Upgrading code! :wink:");
+    client.user.setActivity("Upgrading code!");
     console.log('ready to hear your story!');
 });
-
+while(){
 client.on("messageDelete", (message) => {
     return message.channel.send(`**${message.author.username}** deleted this word: ${message}`);
-   
 });
+if(command === "end") {
+ break;
+}
+}
 
 // create an event listener for messages
 client.on('message', message => {
