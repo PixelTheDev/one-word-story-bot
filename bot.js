@@ -21,7 +21,7 @@ client.on('ready', () => {
     client.user.setActivity("Upgrading code!");
     console.log('ready to hear your story!');
 });
-while(){
+while() {
 client.on("messageDelete", (message) => {
     return message.channel.send(`**${message.author.username}** deleted this word: ${message}`);
 });
