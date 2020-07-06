@@ -1,13 +1,13 @@
 // Import the node modules
 const Discord = require('discord.js');
 
-// Create an instance of a Discord and a Twitter client
+// Create an instance of a Discord client
 const client = new Discord.Client();
 
 // The token of your bot - https://discordapp.com/developers/applications/me
 
 // create bot prefix
-const prefix = './';
+const prefix = '#';
 
 // create other variables
 let listening = false;
@@ -42,17 +42,21 @@ client.on('message', message => {
 		// if listening is true, add new words to your story
 		if(listening === true && channel === message.channel)
 		{
+		  var author;
 		  var a = message.content;
 		  var b = a.split(" ");
 		  b[0], b[1]
 		  if (b[1] && listening == true) {
 		    return message.channel.send("Only one word per message!");
+		  }else if(author === message.author){
+		    return message.channel.send("You can't write 2 words in a row!")
 		  }else if ((message.content.indexOf(".") == 0 || message.content.indexOf(",") ==  0 || message.content.indexOf("\"") == 0 || message.content.indexOf("?") == 0 || message.content.indexOf("!") == 0 || message.content.indexOf("™") == 0 || message.content.indexOf("“") == 0 || message.content.indexOf("”") == 0 || message.content.indexOf(";") == 0 || message.content.indexOf(":") == 0 || message.content.indexOf("(") == 0 || message.content.indexOf(")") == 0 || message.content.indexOf("[") == 0 || message.content.indexOf("]") == 0 || message.content.indexOf("~") == 0 || message.content.indexOf("-") == 0 || message.content.indexOf("/") == 0) && returnStr != "")
 				returnStr = returnStr.slice(0, (returnStr.length - 1));
 			
 			returnStr += message.content + " ";
 		}
 		else return;
+		author = message.author;
 	}
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
