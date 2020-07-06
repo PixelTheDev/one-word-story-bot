@@ -18,7 +18,7 @@ let channel = null;
 // from Discord _after_ ready is emitted
 client.on('ready', () => {
     //client.user.setActivity("Reading beautiful words | ./start to start!"); // set game upon login
-    client.user.setActivity("Improving code! :P");
+    client.user.setActivity("Bugs!");
     console.log('ready to hear your story!');
 });
 
@@ -45,7 +45,7 @@ client.on('message', message => {
 		  var a = message.content;
 		  var b = a.split(" ");
 		  b[0], b[1]
-		  if (b[1].length && listening == true) {
+		  if (b[1].length >= 1 && listening == true) {
 		    return message.channel.send("Only one word per message!");
 		  }else if ((message.content.indexOf(".") == 0 || message.content.indexOf(",") ==  0 || message.content.indexOf("\"") == 0 || message.content.indexOf("?") == 0 || message.content.indexOf("!") == 0 || message.content.indexOf("™") == 0 || message.content.indexOf("“") == 0 || message.content.indexOf("”") == 0 || message.content.indexOf(";") == 0 || message.content.indexOf(":") == 0 || message.content.indexOf("(") == 0 || message.content.indexOf(")") == 0 || message.content.indexOf("[") == 0 || message.content.indexOf("]") == 0 || message.content.indexOf("~") == 0 || message.content.indexOf("-") == 0 || message.content.indexOf("/") == 0) && returnStr != "")
 				returnStr = returnStr.slice(0, (returnStr.length - 1));
