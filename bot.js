@@ -82,8 +82,8 @@ client.on('message', message => {
 		listening = false;
 		channel = null;
 		
-		return message.channel.send("Here is your beautiful story!");
-		return message.channel.send(returnStr);
+		return message.channel.send("Here is your beautiful story!\n" + returnStr);
+		//return message.channel.send(returnStr);
 	}
 });
 
