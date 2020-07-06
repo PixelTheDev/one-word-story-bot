@@ -23,8 +23,7 @@ client.on('ready', () => {
 });
 
 client.on("messageDelete", (message) => {
-    let canal = client.channels.cache.get('ID-CANAL'); 
-    canal.send(`**${message.author.username}** deleted this word: ${message}`);
+    return message.channel.send(`**${message.author.username}** deleted this word: ${message}`);
    
 });
 
