@@ -22,6 +22,12 @@ client.on('ready', () => {
     console.log('ready to hear your story!');
 });
 
+client.on("messageDelete", (message) => {
+    let canal = client.channels.cache.get('ID-CANAL'); 
+    canal.send(`**${message.author.username}** deleted this word: ${message}`);
+   
+});
+
 // create an event listener for messages
 client.on('message', message => {
     
@@ -43,9 +49,9 @@ client.on('message', message => {
 		}
 		else return;
 	}
-if(message.content.contents(" ") == 1){
+/*if(message.content.contents(" ") == 1){
   return message.channel.send("Only one word per message!");
-}
+}*/
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
