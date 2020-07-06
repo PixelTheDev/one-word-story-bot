@@ -42,22 +42,26 @@ client.on('message', message => {
 		// if listening is true, add new words to your story
 		if(listening === true && channel === message.channel)
 		{
-		  var author;
+		  var author = message.author;
+		  var author2;
 		  var a = message.content;
 		  var b = a.split(" ");
 		  b[0], b[1]
 		  if (b[1] && listening == true) {
-		    return message.channel.send("Only one word per message!");
-		  }else if(author === message.author){
-		    return message.channel.send("You can't write 2 words in a row!")
+		    return message.channel.send("Only one word per message! These word won't be included in the story.");
+		  }else if(author === author2){
+		    return message.channel.send("You can't write 2 words in a row!");
+		    author2 = "" ;
 		  }else if ((message.content.indexOf(".") == 0 || message.content.indexOf(",") ==  0 || message.content.indexOf("\"") == 0 || message.content.indexOf("?") == 0 || message.content.indexOf("!") == 0 || message.content.indexOf("™") == 0 || message.content.indexOf("“") == 0 || message.content.indexOf("”") == 0 || message.content.indexOf(";") == 0 || message.content.indexOf(":") == 0 || message.content.indexOf("(") == 0 || message.content.indexOf(")") == 0 || message.content.indexOf("[") == 0 || message.content.indexOf("]") == 0 || message.content.indexOf("~") == 0 || message.content.indexOf("-") == 0 || message.content.indexOf("/") == 0) && returnStr != "")
 				returnStr = returnStr.slice(0, (returnStr.length - 1));
 			
 			returnStr += message.content + " ";
 		}
 		else return;
+		if(!author2.length){
+		  author2 = message.author;
+		}
 	}
-	var author = message.author;
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
@@ -72,7 +76,7 @@ client.on('message', message => {
 		listening = true;
 		channel = message.channel;
 		returnStr = "";
-		return message.channel.send("Now listening! Type command `./end` to stop listening.\nRemember to end your sentences, close your quotes, write only one word at a time, and have fun!");
+		return message.channel.send("Now listening! Type command `;end` to stop listening.\nRemember to end your sentences, close your quotes, write only one word at a time, and have fun!");
 	}
 
 	if (command === "end")
