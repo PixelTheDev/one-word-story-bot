@@ -43,7 +43,7 @@ client.on('message', message => {
 		}
 		else return;
 	}
-if(message.content.indexOf(" ") == 1){
+if(message.content.contains(" ") == 1){
   return message.channel.send("Only one word per message!");
 }
 
