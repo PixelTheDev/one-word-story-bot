@@ -76,11 +76,6 @@ client.on('message', message => {
 		
 		return message.channel.send(returnStr);
 	}
-    splittedmessage = message.content.split(" ");
-    numberofwords = splittedmessage.lenght;
-    if(numberofwords > 1){
-      return message.channel.send("One word per message!");
-    }
 
 });
 
