@@ -42,6 +42,13 @@ client.on('message', message => {
 		// if listening is true, add new words to your story
 		if(listening === true && channel === message.channel)
 		{
+		  var a = message.content;
+		  var b = a.split(" ");
+		  b[0], b[1]
+		  if (b[1].length && listening == true) {
+		    return message.channel.send("Only one word per message!");
+		  }else return;
+		  
 			if ((message.content.indexOf(".") == 0 || message.content.indexOf(",") ==  0 || message.content.indexOf("\"") == 0 || message.content.indexOf("?") == 0 || message.content.indexOf("!") == 0 || message.content.indexOf("™") == 0 || message.content.indexOf("“") == 0 || message.content.indexOf("”") == 0 || message.content.indexOf(";") == 0 || message.content.indexOf(":") == 0 || message.content.indexOf("(") == 0 || message.content.indexOf(")") == 0 || message.content.indexOf("[") == 0 || message.content.indexOf("]") == 0 || message.content.indexOf("~") == 0 || message.content.indexOf("-") == 0 || message.content.indexOf("/") == 0) && returnStr != "")
 				returnStr = returnStr.slice(0, (returnStr.length - 1));
 			
@@ -49,9 +56,6 @@ client.on('message', message => {
 		}
 		else return;
 	}
-/*if(message.content.contents(" ") == 1){
-  return message.channel.send("Only one word per message!");
-}*/
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
