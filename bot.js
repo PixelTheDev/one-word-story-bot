@@ -3,10 +3,6 @@ const Discord = require('discord.js');
 
 // Create an instance of a Discord client and sql
 const client = new Discord.Client();
-const sql = require('sqlite');
-sql.open("./db.sqlite");
-
-
 
 // create bot prefix
 const prefix = ';';
@@ -20,7 +16,7 @@ let channel = null;
 // from Discord _after_ ready is emitted
 client.on('ready', () => {
     //client.user.setActivity("Reading beautiful words | ./start to start!"); // set game upon login
-    client.user.setActivity("Test");
+    client.user.setActivity("GTA V");
     console.log('ready to hear your story!');
 });
 
@@ -32,10 +28,6 @@ client.on("messageDelete", (message) => {
 
 // create an event listener for messages
 client.on('message', message => {
-  
-    sql.run("CREATE TABLE IF NOT EXISTS userData (userId TEXT, money INTEGER)").then(() => {
-      sql.run("INSERT INTO userData (userId, money) VALUES (?, ?)", [message.author, 0]);
-    });
     
     // It's good practice to ignore other bots. This also makes your bot ignore itself
     // and not get into a spam loop (we call that "botception").
