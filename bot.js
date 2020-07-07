@@ -76,12 +76,11 @@ client.on('message', message => {
 			  channel = channelarg;
 			  returnStr = "";
 			  channel.send(`Now listening on ${channelarg}! Type command _;end_ to stop listening.\nRemember to end your sentences, close your quotes, write only one word at a time, and have fun!`);
-			}else{
+			}
 		listening = true;
 		channel = message.channel;
 		returnStr = "";
 		return message.channel.send("Now listening on this channel! Type command `;end` to stop listening.\nRemember to end your sentences, close your quotes, write only one word at a time, and have fun!");
-			}
 	}
 
 	if (command === "end")
