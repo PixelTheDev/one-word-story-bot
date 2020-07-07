@@ -71,11 +71,11 @@ client.on('message', message => {
 		/*else if (listening === true && channel != message.channel)
 			return message.channel.send("Already listening on another channel!");*/
 			else if(c[1]){
-			  const channelarg = client.channels.find(c[1], channelName);
+			  const channelarg = client.channels.get(c[1], channelName);
 			  listening = true;
 			  channel = channelarg;
 			  returnStr = "";
-			  channel.send(`Now listening on ${channelarg}! Type command _;end_ to stop listening.\nRemember to end your sentences, close your quotes, write only one word at a time, and have fun!`);
+			  channelarg.send(`Now listening on ${channelarg}! Type command _;end_ to stop listening.\nRemember to end your sentences, close your quotes, write only one word at a time, and have fun!`);
 			}
 		listening = true;
 		channel = message.channel;
