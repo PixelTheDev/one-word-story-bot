@@ -1,10 +1,12 @@
 // Import the node modules
 const Discord = require('discord.js');
-const sql = require("sqlite");
 
 // Create an instance of a Discord client and sql
 const client = new Discord.Client();
-sql.open("./database.sqlite");
+const sql = require('sqlite');
+sql.open("./db.sqlite");
+
+
 
 // create bot prefix
 const prefix = ';';
