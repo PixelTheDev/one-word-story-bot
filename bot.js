@@ -66,11 +66,11 @@ client.on('message', message => {
     c[0], c[1]
     if(command === "start")
 	{
-		if(listening === true && channel === message.channel)
+		if(listening === true && channel === message.channel){
 			return message.channel.send("Already listening on this channel! I'll make sure this word isn't logged. :wink:");
 		/*else if (listening === true && channel != message.channel)
 			return message.channel.send("Already listening on another channel!");*/
-			else if(c[1]){
+			}else if(c[1]){
 			  const channelarg = client.channels.get(c[1], channelName);
 			  listening = true;
 			  channel = channelarg;
