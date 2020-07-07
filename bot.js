@@ -62,14 +62,7 @@ client.on('message', message => {
 				returnStr = returnStr.slice(0, (returnStr.length - 1));
 			
 			returnStr += message.content + " ";
-			sql.get(`SELECT * FROM userData WHERE userId = ${messages.author.id}`).then(row => { //the row is the user"s data
-			      if (!row) { //if the user is not in the database
-			        sql.run("INSERT INTO userData (userId, money) VALUES (?, ?)", [`${guildId}`, message.author.id, 0]); //let"s just insert them
-			message.channel.send("Registered.")
-			} else { //if the user is in the database
-			sql.run(`UPDATE userData SET money = ${row.money + 100} WHERE guild = ${msg.guild.id}`)
-			}
-			});
+			
 		}
 		else return;
 		  author2 = message.author;
@@ -89,6 +82,15 @@ client.on('message', message => {
 		channel = message.channel;
 		returnStr = "";
 		return message.channel.send("Now listening! Type command `;end` to stop listening.\nRemember to end your sentences, close your quotes, write only one word at a time, and have fun!");
+		///////////////
+		sql.get(`SELECT * FROM userData WHERE userId = ${messages.author.id}`).then(row => { //the row is the user"s data
+		  if (!row) { //if the user is not in the database
+		    sql.run("INSERT INTO userData (userId, money) VALUES (?, ?)", [`${guildId}`, message.author.id, 0]); //let"s just insert them
+		    message.channel.send("Registered.")
+		  } else { //if the user is in the database
+		    sql.run(`UPDATE userData SET money = ${row.money + 100} WHERE guild = ${msg.guild.id}`)
+		  }
+		});
 	}
 
 	if (command === "end")
