@@ -62,10 +62,10 @@ client.on('message', message => {
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
-    const c = command.split(" ");
-    c[0], c[1]
     if(command === "start")
 	{
+	  const c = command.split(" ");
+	  c[0], c[1]
 		if(listening === true && channel === message.channel){
 			return message.channel.send("Already listening on this channel! I'll make sure this word isn't logged. :wink:");
 		/*else if (listening === true && channel != message.channel)
