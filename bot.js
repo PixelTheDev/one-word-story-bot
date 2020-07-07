@@ -1,10 +1,10 @@
 // Import the node modules
 const Discord = require('discord.js');
+const sql = require("sqlite");
 
-// Create an instance of a Discord client
+// Create an instance of a Discord client and sql
 const client = new Discord.Client();
-
-// The token of your bot - https://discordapp.com/developers/applications/me
+sql.open("./database.sqlite");
 
 // create bot prefix
 const prefix = ';';
@@ -18,7 +18,7 @@ let channel = null;
 // from Discord _after_ ready is emitted
 client.on('ready', () => {
     //client.user.setActivity("Reading beautiful words | ./start to start!"); // set game upon login
-    client.user.setActivity("Upgrading code");
+    client.user.setActivity("Test DB");
     console.log('ready to hear your story!');
 });
 
@@ -30,6 +30,10 @@ client.on("messageDelete", (message) => {
 
 // create an event listener for messages
 client.on('message', message => {
+  
+    sql.run("CREATE TABLE IF NOT EXISTS userData (userId TEXT, money INTEGER)").then(() => {
+      sql.run("INSERT INTO userData (userId, money) VALUES (?, ?)", [message.author, 0]);
+    });
     
     // It's good practice to ignore other bots. This also makes your bot ignore itself
     // and not get into a spam loop (we call that "botception").
@@ -56,6 +60,14 @@ client.on('message', message => {
 				returnStr = returnStr.slice(0, (returnStr.length - 1));
 			
 			returnStr += message.content + " ";
+			sql.get(`SELECT * FROM userData WHERE userId = ${messages.author.id}`).then(row => { //the row is the user"s data
+			      if (!row) { //if the user is not in the database
+			        sql.run("INSERT INTO userData (userId, money) VALUES (?, ?)", [`${guildId}`, message.author.id, 0]); //let"s just insert them
+			message.channel.send("Registered.")
+			} else { //if the user is in the database
+			sql.run(`UPDATE userData SET money = ${row.money + 100} WHERE guild = ${msg.guild.id}`)
+			}
+			});
 		}
 		else return;
 		  author2 = message.author;
