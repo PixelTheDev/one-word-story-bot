@@ -22,7 +22,7 @@ client.on('ready', () => {
 
 client.on("messageDelete", (message) => {
   if(listening == true && channel == message.channel){
-    return message.channel.send(`**${message.author.username}** deleted this word: __${message}__ when writing the story`);
+    return message.channel.send(`**${message.author.username}** deleted this word: __${message}__ when writing the story, but it be included in the story if is not a bot command`);
   }
 });
 
@@ -62,18 +62,26 @@ client.on('message', message => {
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
-
+    const c = command.split(" ");
+    c[0], c[1]
     if(command === "start")
 	{
 		if(listening === true && channel === message.channel)
 			return message.channel.send("Already listening on this channel! I'll make sure this word isn't logged. :wink:");
 		/*else if (listening === true && channel != message.channel)
 			return message.channel.send("Already listening on another channel!");*/
-		
+			else if(c[1]){
+			  const channelarg = client.channels.find(c[1], channelName);
+			  listening = true;
+			  channel = channelarg;
+			  returnStr = "";
+			  channel.send(`Now listening on ${channelarg}! Type command _;end_ to stop listening.\nRemember to end your sentences, close your quotes, write only one word at a time, and have fun!`);
+			}else{
 		listening = true;
 		channel = message.channel;
 		returnStr = "";
-		return message.channel.send("Now listening! Type command `;end` to stop listening.\nRemember to end your sentences, close your quotes, write only one word at a time, and have fun!");
+		return message.channel.send("Now listening on this channel! Type command `;end` to stop listening.\nRemember to end your sentences, close your quotes, write only one word at a time, and have fun!");
+			}
 	}
 
 	if (command === "end")
