@@ -72,7 +72,7 @@ client.on("message", async (message) => {
 });
 
 // create bot prefix
-// const prefix = ';';
+const prefix = ';';
 
 // create other variables
 let listening = false;
