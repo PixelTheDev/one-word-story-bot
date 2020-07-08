@@ -16,7 +16,7 @@ let channel = null;
 // from Discord _after_ ready is emitted
 client.on('ready', () => {
     //client.user.setActivity("Reading beautiful words | ./start to start!"); // set game upon login
-    client.user.setActivity("GTA V");
+    client.user.setActivity("GTA V Roleplay");
     console.log('ready to hear your story!');
 });
 
@@ -54,10 +54,9 @@ client.on('message', message => {
 				returnStr = returnStr.slice(0, (returnStr.length - 1));
 			
 			returnStr += message.content + " ";
-			
+			author2 = author;
 		}
 		else return;
-		  author2 = author;
 	}
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
