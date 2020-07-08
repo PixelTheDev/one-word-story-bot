@@ -57,7 +57,7 @@ client.on('message', message => {
 			
 		}
 		else return;
-		  author2 = message.author.id;
+		  author2 = author;
 	}
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
