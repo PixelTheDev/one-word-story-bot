@@ -115,13 +115,13 @@ client.on('message', message => {
   
   if (command === "stats") {
     let mcount = client.users.cache.size;
-    //let scount = client.servers.cache.size;
+    let scount = client.guilds.cache.size;
   //  let tcount = Discord.channels.filter(c => c.type === 'text').size;
       const embed = new Discord.MessageEmbed()
         .setColor('#33EAA3')
         .setAuthor('Stats')
         .addField('**Users:**', `${mcount}`)
-       //   .addField('**Servers:**', `${scount}`)
+        .addField('**Servers:**', `${scount}`)
           //.addField('**Text channels:**', `${tcount}`)
         .setTimestamp()
         .setFooter(message.author.tag);
