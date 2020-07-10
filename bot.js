@@ -34,11 +34,6 @@ client.on('message', message => {
   // and not get into a spam loop (we call that "botception").
   if (message.author.bot) return;
 
-  if (message.content === "Im bored" || message.content === "I'm bored" && listening == false)
-  {
-    return message.channel.send("Write a story!");
-  }
-
   // Otherwise ignore any message that does not start with the prefix, 
   // which is set above
   if (message.content.indexOf(prefix) !== 0)
@@ -116,7 +111,7 @@ client.on('message', message => {
   if (command === "stats") {
     let mcount = client.users.cache.size;
     let scount = client.guilds.cache.size;
-    let tcount = client.channels.filter(c => c.type === 'text').cache.size;
+    let tcount = client.channels.cache.size;
       const embed = new Discord.MessageEmbed()
         .setColor('#33EAA3')
         .setAuthor('Stats')
@@ -134,7 +129,7 @@ client.on('message', message => {
         .setColor('#33EAA3')
         .setAuthor('Help')
         .setDescription('The default prefix is ;')
-        .addFields({ name: 'start', value: 'To start reading' }, { name: 'end', value: 'To end the story' }, { name: 'see', value: 'To see the story without end'}, { name: 'help', value: 'To see this message'}, )
+        .addFields({ name: 'start', value: 'To start reading' }, { name: 'end', value: 'To end the story' }, { name: 'see', value: 'To see the story without end'}, { name: 'help', value: 'To see this message'}, { name: 'stats', value: 'To see the stats'})
         .setTimestamp()
         .setFooter(message.author.tag);
       
