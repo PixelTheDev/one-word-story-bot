@@ -122,7 +122,7 @@ client.on('message', message => {
       .setFooter(message.guild.name, message.guild.iconURL())
       return message.channel.send(embed)*/
       const exampleEmbed = new Discord.MessageEmbed()
-        .setColor('#0099ff')
+        .setColor('#33EAA3')
         .setAuthor('Help')
         .setDescription('The default prefix is ;')
         .addFields({ name: 'start', value: 'To start reading' }, { name: 'end', value: 'To end the story' }, { name: 'see', value: 'To see the story without end'}, { name: 'help', value: 'To see this message'}, )
