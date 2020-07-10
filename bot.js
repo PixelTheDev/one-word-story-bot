@@ -34,7 +34,7 @@ client.on('message', message => {
   // and not get into a spam loop (we call that "botception").
   if (message.author.bot) return;
 
-  if (message.content === "Im bored")
+  if (message.content === "Im bored" && listening == true)
   {
     return message.channel.send("Write a story!");
   }
@@ -123,16 +123,11 @@ client.on('message', message => {
       return message.channel.send(embed)*/
       const exampleEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')
-        .setTitle('Some title')
-        .setURL('https://discord.js.org/')
-        .setAuthor('Some name', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
-        .setDescription('Some description here')
-        .setThumbnail('https://i.imgur.com/wSTFkRM.png')
-        .addFields({ name: 'Regular field title', value: 'Some value here' }, { name: '\u200B', value: '\u200B' }, { name: 'Inline field title', value: 'Some value here', inline: true }, { name: 'Inline field title', value: 'Some value here', inline: true }, )
-        .addField('Inline field title', 'Some value here', true)
-        .setImage('https://i.imgur.com/wSTFkRM.png')
+        .setAuthor('Help')
+        .setDescription('The default prefix is ;')
+        .addFields({ name: 'start', value: 'To start reading' }, { name: 'end', value: 'To end the story' }, { name: 'see', value: 'To see the story without end'}, { name: 'help', value: 'To see this message'}, )
         .setTimestamp()
-        .setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');
+        .setFooter('${message.author.id}');
       
       message.channel.send(exampleEmbed);
   }
