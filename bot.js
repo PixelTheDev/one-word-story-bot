@@ -112,6 +112,22 @@ client.on('message', message => {
       return message.channel.send("You didn't write anything!")
     }
   }
+  
+  if (command === "stats") {
+    let mcount = bot.users.size;
+    let scount = bot.guilds.size;
+    let tcount = bot.channels.filter(c => c.type === 'text').size;
+      const embed = new Discord.MessageEmbed()
+        .setColor('#33EAA3')
+        .setAuthor('Stats')
+        .addField('**Users:**', `${mcount}`)
+          .addField('**Servers:**', `${scount}`)
+          .addField('**Text channels:**', `${tcount}`)
+          .addField('**Voice channels:**', `${vcount}`)
+        .setTimestamp()
+        .setFooter(message.author.tag);
+    message.channel.send(embed)
+  }
 
   if (command === "help")
   {
