@@ -110,7 +110,7 @@ client.on('message', message => {
   if (command === "help")
   {
    /*return message.channel.send("Existen estos 3 comandos:\n **;inicio** - Para empezar\n **;fin** - Para acabar\n **;ver** - Para ver como va quedando la ~~chapuza~~ historia")*/
-    const embed = new client.RichEmbed()
+    const embed = new client.MessageEmbed()
       .setTitle("Help")
       .setDescription("Commands")
       .addField("`;start` - To start")
