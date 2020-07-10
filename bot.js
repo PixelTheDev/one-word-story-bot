@@ -127,7 +127,7 @@ client.on('message', message => {
         .setDescription('The default prefix is ;')
         .addFields({ name: 'start', value: 'To start reading' }, { name: 'end', value: 'To end the story' }, { name: 'see', value: 'To see the story without end'}, { name: 'help', value: 'To see this message'}, )
         .setTimestamp()
-        .setFooter('${message.author.id}');
+        .setFooter(message.author.id));
       
       message.channel.send(exampleEmbed);
   }
