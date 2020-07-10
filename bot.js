@@ -52,7 +52,7 @@ client.on('message', message => {
       b[0], b[1]
       if (b[1] && listening == true) {
         return message.channel.send(":rage: Only one word per message! This message and the words you wrote not be included in the story. :rage:");
-      } else if (author === author2) {
+      } else if (author === author2 && listening === true) {
         return message.channel.send("You can't write 2 words in a row!");
       } else if ((message.content.indexOf(".") == 0 || message.content.indexOf(",") == 0 || message.content.indexOf("\"") == 0 || message.content.indexOf("?") == 0 || message.content.indexOf("!") == 0 || message.content.indexOf("™") == 0 || message.content.indexOf("“") == 0 || message.content.indexOf("”") == 0 || message.content.indexOf(";") == 0 || message.content.indexOf(":") == 0 || message.content.indexOf("(") == 0 || message.content.indexOf(")") == 0 || message.content.indexOf("[") == 0 || message.content.indexOf("]") == 0 || message.content.indexOf("~") == 0 || message.content.indexOf("-") == 0 || message.content.indexOf("/") == 0) && returnStr != "")
         returnStr = returnStr.slice(0, (returnStr.length - 1));
