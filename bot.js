@@ -114,9 +114,9 @@ client.on('message', message => {
   }
   
   if (command === "stats") {
-    let mcount = Discord.users.size;
-    let scount = Discord.guilds.size;
-    let tcount = Discord.channels.filter(c => c.type === 'text').size;
+    let mcount = Discord.users;
+    let scount = Discord.guilds;
+   // let tcount = Discord.channels.filter(c => c.type === 'text').size;
       const embed = new Discord.MessageEmbed()
         .setColor('#33EAA3')
         .setAuthor('Stats')
