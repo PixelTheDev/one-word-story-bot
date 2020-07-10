@@ -53,7 +53,7 @@ client.on('message', message => {
       if (b[1] && listening == true) {
         return message.channel.send(":rage: Only one word per message! This message and the words you wrote not be included in the story. :rage:");
       } else if (author === author2 && listening === true) {
-        return message.channel.send("You can't write 2 words in a row!");
+        return message.channel.send("You can't write 2 words in a row! The last word won't be included in the story");
       } else if ((message.content.indexOf(".") == 0 || message.content.indexOf(",") == 0 || message.content.indexOf("\"") == 0 || message.content.indexOf("?") == 0 || message.content.indexOf("!") == 0 || message.content.indexOf("™") == 0 || message.content.indexOf("“") == 0 || message.content.indexOf("”") == 0 || message.content.indexOf(";") == 0 || message.content.indexOf(":") == 0 || message.content.indexOf("(") == 0 || message.content.indexOf(")") == 0 || message.content.indexOf("[") == 0 || message.content.indexOf("]") == 0 || message.content.indexOf("~") == 0 || message.content.indexOf("-") == 0 || message.content.indexOf("/") == 0) && returnStr != "")
         returnStr = returnStr.slice(0, (returnStr.length - 1));
 
@@ -79,7 +79,7 @@ client.on('message', message => {
       listening = true;
       channel = channelarg;
       returnStr = "";
-      channelarg.send(`Started in ${channelarg}! Write _;end_ for the end.`);
+      return message.channelarg.send(`Started in ${channelarg}! Write _;end_ for the end.`);
     }
     listening = true;
     channel = message.channel;
@@ -113,18 +113,6 @@ client.on('message', message => {
 
   if (command === "help")
   {
-   /*return message.channel.send("Existen estos 3 comandos:\n **;inicio** - Para empezar\n **;fin** - Para acabar\n **;ver** - Para ver como va quedando la ~~chapuza~~ historia")*/
-   /* const embed = new client.MessageEmbed()
-      .setTitle("Help")
-      .setDescription("Commands")
-      .addField("`;start` - To start")
-      .addField("`;end` - To end the story")
-      .addField("`;see` - To see the story without end")
-      .addField("`;help` - To see this message")
-      .setColor("RANDOM")
-      .setTimestamp()
-      .setFooter(message.guild.name, message.guild.iconURL())
-      return message.channel.send(embed)*/
       const exampleEmbed = new Discord.MessageEmbed()
         .setColor('#33EAA3')
         .setAuthor('Help')
