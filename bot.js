@@ -110,7 +110,7 @@ client.on('message', message => {
   if (command === "help")
   {
    /*return message.channel.send("Existen estos 3 comandos:\n **;inicio** - Para empezar\n **;fin** - Para acabar\n **;ver** - Para ver como va quedando la ~~chapuza~~ historia")*/
-    const embed = new client.MessageEmbed()
+   /* const embed = new client.MessageEmbed()
       .setTitle("Help")
       .setDescription("Commands")
       .addField("`;start` - To start")
@@ -120,7 +120,21 @@ client.on('message', message => {
       .setColor("RANDOM")
       .setTimestamp()
       .setFooter(message.guild.name, message.guild.iconURL())
-      return message.channel.send(embed)
+      return message.channel.send(embed)*/
+      const exampleEmbed = new Discord.MessageEmbed()
+        .setColor('#0099ff')
+        .setTitle('Some title')
+        .setURL('https://discord.js.org/')
+        .setAuthor('Some name', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
+        .setDescription('Some description here')
+        .setThumbnail('https://i.imgur.com/wSTFkRM.png')
+        .addFields({ name: 'Regular field title', value: 'Some value here' }, { name: '\u200B', value: '\u200B' }, { name: 'Inline field title', value: 'Some value here', inline: true }, { name: 'Inline field title', value: 'Some value here', inline: true }, )
+        .addField('Inline field title', 'Some value here', true)
+        .setImage('https://i.imgur.com/wSTFkRM.png')
+        .setTimestamp()
+        .setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');
+      
+      channel.send(exampleEmbed);
   }
 });
 
