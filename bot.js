@@ -120,7 +120,7 @@ client.on('message', message => {
       .setColor("RANDOM")
       .setTimestamp()
       .setFooter(message.guild.name, message.guild.iconURL())
-      message.channel.send(embed)
+      return message.channel.send(embed)
   }
 });
 
