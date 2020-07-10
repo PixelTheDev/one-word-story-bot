@@ -77,7 +77,7 @@ client.on('message', message => {
     } else if (c[1]) {
       /*const channelarg = client.channels.get(c[1], channelName);*/
       const channelarg = client.channels.cache.get(c[1]);
-      channel.send('<content>');
+      channel.send("Started");
       listening = true;
       channel = channelarg;
       returnStr = "";
