@@ -32,6 +32,10 @@ const defaultSettings = {
   prefix: ";"
 }
 
+const story = {
+  text: ""
+}
+
 // The ready event is vital, it means that your bot will only start reacting to information
 // from Discord _after_ ready is emitted
 client.on('ready', () => {
@@ -54,6 +58,8 @@ client.on('message', message => {
   if (message.author.bot) return;
   
   const guildConf = client.settings.ensure(message.guild.id, defaultSettings);
+  
+  const savedStory = client.settings.ensure(message.guild.id, story);
   
   // Now we can use the values! 
   // We stop processing if the message does not start with our prefix for this guild.
@@ -168,7 +174,7 @@ client.on('message', message => {
         .setColor('#33EAA3')
         .setAuthor('Help')
         .setDescription('The default prefix is ;')
-        .addFields({ name: 'start', value: 'To start reading' }, { name: 'end', value: 'To end the story' }, { name: 'see', value: 'To see the story without end'}, { name: 'help', value: 'To see this message'}, { name: 'server', value: "To get the link to the bot's server" }, { name: 'invite', value: 'To invite me ;)'}, { name: 'stats', value: 'To see the stats'})
+        .addFields({ name: 'start', value: 'To start reading' }, { name: 'end', value: 'To end the story' }, { name: 'see', value: 'To see the story without end'}, { name: 'help', value: 'To see this message'}, { name: 'server', value: "To get the link to the bot's server" }, { name: 'invite', value: 'To invite me ;)'}, { name: 'stats', value: 'To see the stats'}, { name: 'setconf prefix <prefix>', value: 'To set a custom prefix'}, { name:'showconf', value: 'To see the prefix'})
         .setTimestamp()
         .setFooter(message.author.tag);
       
@@ -201,7 +207,7 @@ client.on('message', message => {
       // We can confirm everything's done to the client.
       message.channel.send(`Guild configuration item ${prop} has been changed to:\n\`${value.join(" ")}\``);
     }
-      if (command === "showconf") {
+      if (command === "show") {
         let configProps = Object.keys(guildConf).map(prop => {
           return `${prop}  :  ${guildConf[prop]}\n`;
         });
