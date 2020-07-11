@@ -95,6 +95,7 @@ client.on('message', message => {
 
     listening = false;
     channel = null;
+    returnStr = "";
     author = "";
     author2 = "";
 
