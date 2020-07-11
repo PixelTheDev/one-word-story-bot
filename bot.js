@@ -89,8 +89,9 @@ client.on('message', message => {
     /*if(channel != message.channel)
     	return message.channel.send("`./end` must be run from the same channel that `./start` was called from.");*/
 
-    if (returnStr == "")
+    if (returnStr == ""){
       return message.channel.send("You didn't write, I will be reading.");
+    }
 
     listening = false;
     channel = null;
