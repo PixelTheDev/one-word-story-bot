@@ -92,6 +92,9 @@ client.on('message', message => {
     if (returnStr == "" && listening == true){
       return message.channel.send("You didn't write, I will be reading.");
     }
+    if (listening == false){
+      return message.channel.send("Start it first!")
+    }
 
     listening = false;
     channel = null;
