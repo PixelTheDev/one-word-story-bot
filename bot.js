@@ -57,6 +57,11 @@ client.on('message', message => {
   // It's good practice to ignore other bots. This also makes your bot ignore itself
   // and not get into a spam loop (we call that "botception").
   if (message.author.bot) return;
+  
+  const guildConf = client.settings.ensure(message.guild.id, defaultSettings);
+  
+  // Now we can use the values! 
+  // We stop processing if the message does not start with our prefix for this guild.
 
   // Otherwise ignore any message that does not start with the prefix, 
   // which is set above
