@@ -98,11 +98,12 @@ client.on('message', message => {
 
     listening = false;
     channel = null;
-    returnStr = "";
     author = "";
     author2 = "";
 
-    return message.channel.send("Here is your story!\n\n" + returnStr);
+    return message.channel.send('Here is your story!\n\n' + returnStr);
+    
+    returnStr = "";
     //return message.channel.send(returnStr);
   }
 
