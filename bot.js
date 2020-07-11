@@ -129,6 +129,10 @@ client.on('message', message => {
   if (command === "server"){
     return message.channel.send("Here you are!\nhttps://discord.gg/n6DX5Vd")
   }
+  
+  if (command === "invite"){
+    return message.channel.send("Of course!\nhttps://discord.com/oauth2/authorize?client_id=728709263962275840&scope=bot&permissions=68608")
+  }
 
   if (command === "help")
   {
@@ -136,7 +140,7 @@ client.on('message', message => {
         .setColor('#33EAA3')
         .setAuthor('Help')
         .setDescription('The default prefix is ;')
-        .addFields({ name: 'start', value: 'To start reading' }, { name: 'end', value: 'To end the story' }, { name: 'see', value: 'To see the story without end'}, { name: 'help', value: 'To see this message'}, { name: 'server', value: 'To get the link to the bot`s server' }, { name: 'stats', value: 'To see the stats'})
+        .addFields({ name: 'start', value: 'To start reading' }, { name: 'end', value: 'To end the story' }, { name: 'see', value: 'To see the story without end'}, { name: 'help', value: 'To see this message'}, { name: 'server', value: 'To get the link to the bot`s server' }, { name: 'invite', value: 'To invite me ;)'}, { name: 'stats', value: 'To see the stats'})
         .setTimestamp()
         .setFooter(message.author.tag);
       
