@@ -144,7 +144,7 @@ client.on('message', message => {
         .setColor('#33EAA3')
         .setAuthor('Help')
         .setDescription('The default prefix is ;')
-        .addFields({ name: 'start', value: 'To start reading' }, { name: 'end', value: 'To end the story' }, { name: 'see', value: 'To see the story without end'}, { name: 'help', value: 'To see this message'}, { name: 'server', value: 'To get the link to the bot`s server' }, { name: 'invite', value: 'To invite me ;)'}, { name: 'stats', value: 'To see the stats'})
+        .addFields({ name: 'start', value: 'To start reading' }, { name: 'end', value: 'To end the story' }, { name: 'see', value: 'To see the story without end'}, { name: 'help', value: 'To see this message'}, { name: 'server', value: "To get the link to the bot's server" }, { name: 'invite', value: 'To invite me ;)'}, { name: 'stats', value: 'To see the stats'})
         .setTimestamp()
         .setFooter(message.author.tag);
       
