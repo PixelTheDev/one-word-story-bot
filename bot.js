@@ -106,9 +106,8 @@ client.on('message', message => {
   {
     if (!returnStr === ""){
     return message.channel.send("This is the story at the moment\n\n" + returnStr);
-    }else{
-      return message.channel.send("You didn't write anything!")
     }
+      return message.channel.send("You didn't write anything!");
   }
   
   if (command === "stats") {
