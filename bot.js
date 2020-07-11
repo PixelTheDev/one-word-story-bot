@@ -94,6 +94,8 @@ client.on('message', message => {
 
     listening = false;
     channel = null;
+    author = "";
+    author2 = "";
 
     return message.channel.send("Here is your story!\n\n" + returnStr);
     //return message.channel.send(returnStr);
