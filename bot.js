@@ -29,12 +29,7 @@ client.settings = new Enmap({
 });
 // Just setting up a default configuration object here, to have somethign to insert.
 const defaultSettings = {
-  prefix: "!",
-  modLogChannel: "mod-log",
-  modRole: "Moderator",
-  adminRole: "Administrator",
-  welcomeChannel: "welcome",
-  welcomeMessage: "Say hello to {{user}}, everyone!"
+  prefix: ";"
 }
 
 // The ready event is vital, it means that your bot will only start reacting to information
@@ -65,7 +60,7 @@ client.on('message', message => {
 
   // Otherwise ignore any message that does not start with the prefix, 
   // which is set above
-  if (message.content.indexOf(prefix) !== 0)
+  if (message.content.indexOf(guildConf.prefix) !== 0)
   {
     // if listening is true, add new words to your story
     if (listening === true && channel === message.channel)
