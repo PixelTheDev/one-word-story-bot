@@ -182,15 +182,9 @@ client.on('message', message => {
     // Alright. Let's make a command! This one changes the value of any key
     // in the configuration.
     if (command === "setconf") {
-      // Command is admin only, let's grab the admin value: 
-      const adminRole = message.guild.roles.find("name", guildConf.adminRole);
-      if (!adminRole) return message.reply("Administrator Role Not Found");
+      // Command is admi
   
-      // Then we'll exit if the user is not admin
-      if (!message.member.roles.has(adminRole.id)) {
-        return message.reply("You're not an admin, sorry!");
-      }
-  
+      // Then we'll exit if the user is not
       // Let's get our key and value from the arguments. 
       // This is array destructuring, by the way. 
       const [prop, ...value] = args;
