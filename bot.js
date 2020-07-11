@@ -13,6 +13,30 @@ let returnStr = "";
 let channel = null;
 var author2;
 
+// Initialize the server configurations
+const Enmap = require('enmap');
+
+// I attach settings to client to allow for modular bot setups
+// In this example we'll leverage fetchAll:false and autoFetch:true for
+// best efficiency in memory usage. We also have to use cloneLevel:'deep'
+// to avoid our values to be "reference" to the default settings.
+// The explanation for why is complex - just go with it.
+client.settings = new Enmap({
+  name: "settings",
+  fetchAll: false,
+  autoFetch: true,
+  cloneLevel: 'deep'
+});
+// Just setting up a default configuration object here, to have somethign to insert.
+const defaultSettings = {
+  prefix: "!",
+  modLogChannel: "mod-log",
+  modRole: "Moderator",
+  adminRole: "Administrator",
+  welcomeChannel: "welcome",
+  welcomeMessage: "Say hello to {{user}}, everyone!"
+}
+
 // The ready event is vital, it means that your bot will only start reacting to information
 // from Discord _after_ ready is emitted
 client.on('ready', () => {
@@ -150,6 +174,46 @@ client.on('message', message => {
       
       message.channel.send(exampleEmbed);
   }
+    // Alright. Let's make a command! This one changes the value of any key
+    // in the configuration.
+    if (command === "setconf") {
+      // Command is admin only, let's grab the admin value: 
+      const adminRole = message.guild.roles.find("name", guildConf.adminRole);
+      if (!adminRole) return message.reply("Administrator Role Not Found");
+  
+      // Then we'll exit if the user is not admin
+      if (!message.member.roles.has(adminRole.id)) {
+        return message.reply("You're not an admin, sorry!");
+      }
+  
+      // Let's get our key and value from the arguments. 
+      // This is array destructuring, by the way. 
+      const [prop, ...value] = args;
+      // Example: 
+      // prop: "prefix"
+      // value: ["+"]
+      // (yes it's an array, we join it further down!)
+  
+      // We can check that the key exists to avoid having multiple useless, 
+      // unused keys in the config:
+      if (!client.settings.has(message.guild.id, prop)) {
+        return message.reply("This key is not in the configuration.");
+      }
+  
+      // Now we can finally change the value. Here we only have strings for values 
+      // so we won't bother trying to make sure it's the right type and such. 
+      client.settings.set(message.guild.id, value.join(" "), prop);
+  
+      // We can confirm everything's done to the client.
+      message.channel.send(`Guild configuration item ${prop} has been changed to:\n\`${value.join(" ")}\``);
+    }
+      if (command === "showconf") {
+        let configProps = Object.keys(guildConf).map(prop => {
+          return `${prop}  :  ${guildConf[prop]}\n`;
+        });
+        message.channel.send(`The following are the server's current configuration:
+        \`\`\`${configProps}\`\`\``);
+      }
 });
 
 // log the bot in
