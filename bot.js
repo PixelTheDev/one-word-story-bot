@@ -6,6 +6,7 @@ const client = new Discord.Client();
 
 // create bot prefix
 const prefix = ';';
+const escapeRegex = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 // create other variables
 let listening = false;
@@ -90,6 +91,12 @@ client.on('message', message => {
   }
 
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
+  const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(prefix)})\\s*`);
+  if (!prefixRegex.test(message.content)) return;
+  
+  const [, matchedPrefix] = message.content.match(prefixRegex);
+  const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
   const command = args.shift().toLowerCase();
   if (command === "start")
   {
