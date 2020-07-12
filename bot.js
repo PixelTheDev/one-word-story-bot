@@ -33,9 +33,7 @@ const defaultSettings = {
   prefix: ";"
 }
 
-const story = {
-  text: ""
-}
+client.points = new Enmap({name: "points"});
 
 // The ready event is vital, it means that your bot will only start reacting to information
 // from Discord _after_ ready is emitted
@@ -57,10 +55,14 @@ client.on('message', message => {
   // It's good practice to ignore other bots. This also makes your bot ignore itself
   // and not get into a spam loop (we call that "botception").
   if (message.author.bot) return;
+  if (!message.guild) {return message.send("Don't DM me!");}
   
   const guildConf = client.settings.ensure(message.guild.id, defaultSettings);
   
-  const savedStory = client.settings.ensure(message.guild.id, story);
+  client.points.ensure(`${message.guild.id}`, {
+    guild: message.guild.id,
+    points: ""
+  });
   
   // Now we can use the values! 
   // We stop processing if the message does not start with our prefix for this guild.
