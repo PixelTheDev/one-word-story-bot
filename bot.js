@@ -55,7 +55,7 @@ client.on('message', message => {
   // It's good practice to ignore other bots. This also makes your bot ignore itself
   // and not get into a spam loop (we call that "botception").
   if (message.author.bot) return;
-  if (!message.guild) {return message.author.send("Don't DM me!");}
+  if (!message.guild) {return message.author.send("Don't DM me!\nI'm a bot for servers, not for DMs.");}
   
   const guildConf = client.settings.ensure(message.guild.id, defaultSettings);
   
