@@ -207,7 +207,7 @@ client.on('message', message => {
       // We can confirm everything's done to the client.
       message.channel.send(`Guild configuration item ${prop} has been changed to:\n\`${value.join(" ")}\``);
     }
-      if (command === "show") {
+      if (command === "showconf") {
         let configProps = Object.keys(guildConf).map(prop => {
           return `${prop}  :  ${guildConf[prop]}\n`;
         });
