@@ -33,7 +33,15 @@ const defaultSettings = {
   prefix: ";"
 }
 
-client.points = new Enmap({name: "points"});
+client.story = new Enmap({
+   name: "story",
+   fetchAll: false,
+   autoFetch: true,
+   cloneLevel: 'deep'
+});
+const defaultStory = {
+    words: ""
+}
 
 // The ready event is vital, it means that your bot will only start reacting to information
 // from Discord _after_ ready is emitted
@@ -58,11 +66,7 @@ client.on('message', message => {
   if (!message.guild) {return message.author.send("Don't DM me!\nI'm a bot for servers, not for DMs.");}
   
   const guildConf = client.settings.ensure(message.guild.id, defaultSettings);
-  
-  client.points.ensure(`${message.guild.id}`, {
-    guild: message.guild.id,
-    points: ""
-  });
+  const channelStory = client.story.ensure(message.channel.id, defaultStory);
   
   // Now we can use the values! 
   // We stop processing if the message does not start with our prefix for this guild.
@@ -85,7 +89,8 @@ client.on('message', message => {
       } else if ((message.content.indexOf(".") == 0 || message.content.indexOf(",") == 0 || message.content.indexOf("\"") == 0 || message.content.indexOf("?") == 0 || message.content.indexOf("!") == 0 || message.content.indexOf("™") == 0 || message.content.indexOf("“") == 0 || message.content.indexOf("”") == 0 || message.content.indexOf(";") == 0 || message.content.indexOf(":") == 0 || message.content.indexOf("(") == 0 || message.content.indexOf(")") == 0 || message.content.indexOf("[") == 0 || message.content.indexOf("]") == 0 || message.content.indexOf("~") == 0 || message.content.indexOf("-") == 0 || message.content.indexOf("/") == 0) && returnStr != "")
         returnStr = returnStr.slice(0, (returnStr.length - 1));
 
-      returnStr += message.content + " ";
+      //returnStr += message.content + " ";
+      client.story.set(words, += message.content + " ");
       author2 = author;
 
     }
@@ -128,9 +133,9 @@ client.on('message', message => {
     /*if(channel != message.channel)
     	return message.channel.send("`./end` must be run from the same channel that `./start` was called from.");*/
 
-    if (returnStr == "" && listening == true){
+    /*if (returnStr == "" && listening == true){
       return message.channel.send("You didn't write, I will be reading.");
-    }
+    }*/
     if (listening == false){
       return message.channel.send("Start it first!")
     }
@@ -140,7 +145,7 @@ client.on('message', message => {
     author = "";
     author2 = "";
 
-    return message.channel.send('Here is your story!\n\n' + returnStr);
+    return message.channel.send('Here is your story!\n\n' + client.story.get(words));
     
     returnStr = "";
     //return message.channel.send(returnStr);
