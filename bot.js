@@ -47,7 +47,7 @@ const defaultStory = {
 // from Discord _after_ ready is emitted
 client.on('ready', () => {
   //client.user.setActivity("Reading beautiful words | ./start to start!"); // set game upon login
-  client.user.setActivity("Reading beautiful words | ;help for help!");
+  client.user.setActivity("Reading beautiful words | ;help for help! | Finally back!");
   console.log('ready to hear your story!');
 });
 
@@ -89,8 +89,7 @@ client.on('message', message => {
       } else if ((message.content.indexOf(".") == 0 || message.content.indexOf(",") == 0 || message.content.indexOf("\"") == 0 || message.content.indexOf("?") == 0 || message.content.indexOf("!") == 0 || message.content.indexOf("™") == 0 || message.content.indexOf("“") == 0 || message.content.indexOf("”") == 0 || message.content.indexOf(";") == 0 || message.content.indexOf(":") == 0 || message.content.indexOf("(") == 0 || message.content.indexOf(")") == 0 || message.content.indexOf("[") == 0 || message.content.indexOf("]") == 0 || message.content.indexOf("~") == 0 || message.content.indexOf("-") == 0 || message.content.indexOf("/") == 0) && returnStr != "")
         returnStr = returnStr.slice(0, (returnStr.length - 1));
 
-      //returnStr += message.content + " ";
-      client.story.set(words, += message.content + " ");
+      returnStr += message.content + " ";
       author2 = author;
 
     }
@@ -145,7 +144,7 @@ client.on('message', message => {
     author = "";
     author2 = "";
 
-    return message.channel.send('Here is your story!\n\n' + client.story.get(words));
+    return message.channel.send('Here is your story!\n\n' + returnStr);
     
     returnStr = "";
     //return message.channel.send(returnStr);
