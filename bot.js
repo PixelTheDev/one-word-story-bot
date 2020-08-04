@@ -47,7 +47,7 @@ const defaultStory = {
 // from Discord _after_ ready is emitted
 client.on('ready', () => {
   //client.user.setActivity("Reading beautiful words | ./start to start!"); // set game upon login
-  client.user.setActivity("Reading beautiful words | ;help for help! | Finally back!");
+  client.user.setActivity("Reading beautiful words | ;help for help!");
   console.log('ready to hear your story!');
 });
 
@@ -89,7 +89,8 @@ client.on('message', message => {
       } else if ((message.content.indexOf(".") == 0 || message.content.indexOf(",") == 0 || message.content.indexOf("\"") == 0 || message.content.indexOf("?") == 0 || message.content.indexOf("!") == 0 || message.content.indexOf("™") == 0 || message.content.indexOf("“") == 0 || message.content.indexOf("”") == 0 || message.content.indexOf(";") == 0 || message.content.indexOf(":") == 0 || message.content.indexOf("(") == 0 || message.content.indexOf(")") == 0 || message.content.indexOf("[") == 0 || message.content.indexOf("]") == 0 || message.content.indexOf("~") == 0 || message.content.indexOf("-") == 0 || message.content.indexOf("/") == 0) && returnStr != "")
         returnStr = returnStr.slice(0, (returnStr.length - 1));
 
-      returnStr += message.content + " ";
+      //returnStr += message.content + " ";
+      client.story.set(message.guild.id, words, client.story.get(message.guild.id, words)+message.content + " ");
       author2 = author;
 
     }
@@ -144,7 +145,7 @@ client.on('message', message => {
     author = "";
     author2 = "";
 
-    return message.channel.send('Here is your story!\n\n' + returnStr);
+    return message.channel.send('Here is your story!\n\n' + client.story.get(message.guild.id, words));
     
     returnStr = "";
     //return message.channel.send(returnStr);
@@ -230,4 +231,4 @@ client.on('message', message => {
 });
 
 // log the bot in
-client.login(process.env.TOKEN);
+client.login("NzI4NzA5MjYzOTYyMjc1ODQw.Xw64bg.QUsAvlMpSX6YOpf15PeikTzvWUY");
