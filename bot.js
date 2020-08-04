@@ -124,7 +124,7 @@ client.on('message', message => {
     }
     listening = true;
     channel = message.channel;
-    returnStr = "";
+    client.story.set(message.guild.id, words) = "";
     return message.channel.send("Now reading!");
   }
 
@@ -147,16 +147,16 @@ client.on('message', message => {
 
     return message.channel.send('Here is your story!\n\n' + client.story.get(message.guild.id, words));
     
-    returnStr = "";
+    client.story.set(message.guild.id, words) = "";
     //return message.channel.send(returnStr);
   }
 
   if (command === "see")
   {
-    if (returnStr === ""){
+    if (client.story.get(message.guild.id, words) === ""){
       return message.channel.send("You didn't write anything!")
     }
-    return message.channel.send("This is the story at the moment\n\n" + returnStr)
+    return message.channel.send("This is the story at the moment\n\n" + client.story.get(message.guild.id, words))
   }
   
   if (command === "stats") {
