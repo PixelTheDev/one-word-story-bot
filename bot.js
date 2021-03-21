@@ -10,9 +10,10 @@ const escapeRegex = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 // create other variables
 let listening = false;
-let returnStr = "";
+var returnStr = new Array();
 let channel = null;
-var author2;
+var author2 = new Array();
+var author = new Array();
 
 // Initialize the server configurations
 const Enmap = require('enmap');
@@ -63,10 +64,9 @@ client.on('message', message => {
   // It's good practice to ignore other bots. This also makes your bot ignore itself
   // and not get into a spam loop (we call that "botception").
   if (message.author.bot) return;
-  if (!message.guild) {return message.author.send("Don't DM me!\nI'm a bot for servers, not for DMs.");}
+  if (!message.guild) {return message.author.send("I'm alive. Need coffee.");}
   
   const guildConf = client.settings.ensure(message.guild.id, defaultSettings);
-  const channelStory = client.story.ensure(message.channel.id, defaultStory);
   
   // Now we can use the values! 
   // We stop processing if the message does not start with our prefix for this guild.
@@ -78,20 +78,19 @@ client.on('message', message => {
     // if listening is true, add new words to your story
     if (listening === true && channel === message.channel)
     {
-      var author = message.author.id;
+      author[message.channel.id] = message.author.id;
       var a = message.content;
       var b = a.split(" ");
       b[0], b[1]
       if (b[1] && listening == true) {
         return message.channel.send(":rage: Only one word per message! This message and the words you wrote not be included in the story. :rage:");
-      } else if (author === author2 && listening === true) {
+      } else if (author[message.channel.id]  === author2[message.channel.id]  && listening === true) {
         return message.channel.send("You can't write 2 words in a row! The last word won't be included in the story");
-      } else if ((message.content.indexOf(".") == 0 || message.content.indexOf(",") == 0 || message.content.indexOf("\"") == 0 || message.content.indexOf("?") == 0 || message.content.indexOf("!") == 0 || message.content.indexOf("™") == 0 || message.content.indexOf("“") == 0 || message.content.indexOf("”") == 0 || message.content.indexOf(";") == 0 || message.content.indexOf(":") == 0 || message.content.indexOf("(") == 0 || message.content.indexOf(")") == 0 || message.content.indexOf("[") == 0 || message.content.indexOf("]") == 0 || message.content.indexOf("~") == 0 || message.content.indexOf("-") == 0 || message.content.indexOf("/") == 0) && returnStr != "")
-        returnStr = returnStr.slice(0, (returnStr.length - 1));
+      } else if ((message.content.indexOf(".") == 0 || message.content.indexOf(",") == 0 || message.content.indexOf("\"") == 0 || message.content.indexOf("?") == 0 || message.content.indexOf("!") == 0 || message.content.indexOf("™") == 0 || message.content.indexOf("“") == 0 || message.content.indexOf("”") == 0 || message.content.indexOf(";") == 0 || message.content.indexOf(":") == 0 || message.content.indexOf("(") == 0 || message.content.indexOf(")") == 0 || message.content.indexOf("[") == 0 || message.content.indexOf("]") == 0 || message.content.indexOf("~") == 0 || message.content.indexOf("-") == 0 || message.content.indexOf("/") == 0) && returnStr[message.channel.id] != "")
+        returnStr[message.channel.id] = returnStr[message.channel.id].slice(0, (returnStr[message.channel.id].length - 1));
 
-      //returnStr += message.content + " ";
-      client.story.set(words, += message.content + " ");
-      author2 = author;
+      returnStr[message.channel.id] += message.content + " ";
+      author2[message.channel.id]  = author[message.channel.id] ;
 
     }
     else return;
@@ -119,12 +118,12 @@ client.on('message', message => {
       channel.send("Started");
       listening = true;
       channel = channelarg;
-      returnStr = "";
+      returnStr[message.channel.id] = "";
       return message.channelarg.send(`Started in ${channelarg}! Write _;end_ for the end.`);
     }
     listening = true;
     channel = message.channel;
-    returnStr = "";
+    returnStr[message.channel.id] = "";
     return message.channel.send("Now reading!");
   }
 
@@ -133,30 +132,30 @@ client.on('message', message => {
     /*if(channel != message.channel)
     	return message.channel.send("`./end` must be run from the same channel that `./start` was called from.");*/
 
-    /*if (returnStr == "" && listening == true){
+    if (returnStr[message.channel.id] == "" && listening == true){
       return message.channel.send("You didn't write, I will be reading.");
-    }*/
+    }
     if (listening == false){
       return message.channel.send("Start it first!")
     }
 
     listening = false;
     channel = null;
-    author = "";
-    author2 = "";
+    author[message.channel.id]  = "";
+    author2[message.channel.id]  = "";
 
-    return message.channel.send('Here is your story!\n\n' + client.story.get(words));
+    return message.channel.send('Here is your story!\n\n' + returnStr[message.channel.id]);
     
-    returnStr = "";
-    //return message.channel.send(returnStr);
+  returnStr[message.channel.id] = "";
+    //return message.channel.send(returnStr[message.channel.id]);
   }
 
   if (command === "see")
   {
-    if (returnStr === ""){
+    if (returnStr[message.channel.id] === ""){
       return message.channel.send("You didn't write anything!")
     }
-    return message.channel.send("This is the story at the moment\n\n" + returnStr)
+    return message.channel.send("This is the story at the moment\n\n" + returnStr[message.channel.id])
   }
   
   if (command === "stats") {
@@ -231,4 +230,4 @@ client.on('message', message => {
 });
 
 // log the bot in
-client.login(process.env.TOKEN);
+client.login(YOUR.DISCORD.TOKEN);
